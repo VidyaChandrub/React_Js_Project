@@ -3,7 +3,7 @@ import user from '../images/user.webp'
 
 const ContactCard = (props) => {
 
-    const {id, name, email} = props.contact
+    const {id, name, email} = props.contact;
   return (
     <div className='item'>
         <img src={user} alt="image2" height="25px" weight="25px"/>
