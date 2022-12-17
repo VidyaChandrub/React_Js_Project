@@ -42,7 +42,7 @@ const Contactlist = () => {
                 <div className="card-body">
                   <div className="row align-items-center d-flex justify-content-around">
                   <div className="col-md-4">
-                  <img src="" className='contact-img'  />
+                  <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" className='contact-img'  />
                   </div>
                   <div className="col-md-7">
                     <ul className='list-group'>
