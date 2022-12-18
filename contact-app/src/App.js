@@ -6,6 +6,7 @@ import Contactlist from './components/Contacts/contactList/Contactlist'
 import Addcontact from  './components/Contacts/addContacts/Addcontact'
 import Viewcontact from  './components/Contacts/viewContacts/Viewcontact'
 import Editcontact from  './components/Contacts/editContacts/Editcontact'
+import Spinner from './components/Spinner/Spinner';
 
 let App = () => {
 
@@ -13,6 +14,7 @@ let App = () => {
   return (
     <>
     <Router>
+     
       <Navbar />
       <Routes>
         <Route path={"/"} element={<Navigate to={'/contactlist'}/>}/>
