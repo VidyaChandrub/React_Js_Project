@@ -68,36 +68,41 @@ const Contactlist = () => {
         loading ? <><section className='contact-list'>
         <div className="container">
           <div className="row">
-            <div className="col-md-6">
-              <div className="card">
-                <div className="card-body">
-                  <div className="row align-items-center d-flex justify-content-around">
-                  <div className="col-md-4">
-                  <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" className='contact-img'  />
-                  </div>
-                  <div className="col-md-7">
-                    <ul className='list-group'>
-                      <li className='list-group-item list-group-item-action'>
-                          Name : <span className='fw-bold'>Vidya</span>
-                      </li>
-                      <li className='list-group-item list-group-item-action'>
-                          Mobile : <span className='fw-bold'>8088285266</span>
-                      </li>
-                      <li className='list-group-item list-group-item-action'>
-                          Email : <span className='fw-bold'>Vidya@gmail.com</span>
-                      </li>
-                    </ul>
-
-                  </div>
-                  <div className="col-md-1 d-flex flex-column align-items-center">
-                    <Link to={"/viewcontact/:contactID"} className='btn btn-warning my-1'><i className='fa fa-eye'/></Link>
-                    <Link to={"/editcontact/:contactID"} className='btn btn-primary my-1'><i className='fa fa-pen'/></Link>
-                    <Link  className='btn btn-danger my-1'><i className='fa fa-trash'/></Link>
-                  </div>
+            {
+              contacts.length > 0 && contacts.map((contact) => {
+                return (<div className="col-md-6">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="row align-items-center d-flex justify-content-around">
+                    <div className="col-md-4">
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" className='contact-img'  />
+                    </div>
+                    <div className="col-md-7">
+                      <ul className='list-group'>
+                        <li className='list-group-item list-group-item-action'>
+                            Name : <span className='fw-bold'>Vidya</span>
+                        </li>
+                        <li className='list-group-item list-group-item-action'>
+                            Mobile : <span className='fw-bold'>8088285266</span>
+                        </li>
+                        <li className='list-group-item list-group-item-action'>
+                            Email : <span className='fw-bold'>Vidya@gmail.com</span>
+                        </li>
+                      </ul>
+  
+                    </div>
+                    <div className="col-md-1 d-flex flex-column align-items-center">
+                      <Link to={"/viewcontact/:contactID"} className='btn btn-warning my-1'><i className='fa fa-eye'/></Link>
+                      <Link to={"/editcontact/:contactID"} className='btn btn-primary my-1'><i className='fa fa-pen'/></Link>
+                      <Link  className='btn btn-danger my-1'><i className='fa fa-trash'/></Link>
+                    </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div>)
+              })
+            }
+            
           </div>
         </div>
 
