@@ -70,23 +70,23 @@ const Contactlist = () => {
           <div className="row">
             {
               contacts.length > 0 && contacts.map((contact) => {
-                return (<div className="col-md-6">
-                <div className="card">
+                return (<div className="col-md-6" key={contact.id}>
+                <div className="card my-2">
                   <div className="card-body">
                     <div className="row align-items-center d-flex justify-content-around">
                     <div className="col-md-4">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" className='contact-img'  />
+                    <img src={contact.photo} className='contact-img'  />
                     </div>
                     <div className="col-md-7">
                       <ul className='list-group'>
                         <li className='list-group-item list-group-item-action'>
-                            Name : <span className='fw-bold'>Vidya</span>
+                            Name : <span className='fw-bold'>{contact.name}</span>
                         </li>
                         <li className='list-group-item list-group-item-action'>
-                            Mobile : <span className='fw-bold'>8088285266</span>
+                            Mobile : <span className='fw-bold'>{contact.mobile}</span>
                         </li>
                         <li className='list-group-item list-group-item-action'>
-                            Email : <span className='fw-bold'>Vidya@gmail.com</span>
+                            Email : <span className='fw-bold'>{contact.email}</span>
                         </li>
                       </ul>
   
