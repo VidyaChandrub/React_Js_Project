@@ -1,5 +1,6 @@
 import Axios from "axios"
 
+
 export class ContactService {
     static serverURL = `http://localhost:9000`;
 
@@ -22,5 +23,10 @@ export class ContactService {
     static getContacts(contactID){
         let dataURL = `${this.serverURL}/contacts/${contactID}`;
         return Axios.get(dataURL);
+    }
+
+    static createContact(contact){
+        let dataURL = `${this.serverURL}/contacts`;
+        return Axios.post(dataURL,contact)
     }
 }
