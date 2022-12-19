@@ -1,11 +1,12 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { ContactService } from '../../../services/ContactService';
 
 const Addcontact = () => {
 
+  let navigate = useNavigate();
   let [state,setState] = useState({
     loading : false,
     contact : {
@@ -36,11 +37,12 @@ const Addcontact = () => {
       try{
         let response = await ContactService.createContact(state.contact);
         if(response){
-          
+            navigate('/contactlist',{replace : true})
         }
       }
       catch(error){
-
+        setState({...state,errorMessage: error.message});
+        navigate('/contactadd',{replace : false})
       }
 
   }
