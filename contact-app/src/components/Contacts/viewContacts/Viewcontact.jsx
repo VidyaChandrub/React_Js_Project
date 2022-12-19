@@ -1,10 +1,42 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { useEffect,useState } from 'react';
+import {Link, useParams} from 'react-router-dom'
+import { ContactService } from '../../../services/ContactService';
+import Spinner from '../../Spinner/Spinner';
 
 const Viewcontact = () => {
+
+  let {contactID} = useParams();
+
+  let [state,setState]=useState({
+    loading:false,
+    contact:[],
+    errorMessage:''
+  });
+
+  useEffect(async ()=>{
+    try {
+      let response = await ContactService.getContacts(contactID);
+      let groupresponse = await ContactService.getGroup(response.data);
+      /* console.log(response.data) */
+      setState({...state,
+        loading:false,
+        contact:response.data,
+        group: groupresponse.data}
+    )
+    }
+    catch(error){
+      setState({...state,
+        loading:false,
+      errorMessage:error.message})
+    }
+  },[contactID]);
+
+  let {loading,contact,errorMessage,group} = state;
   return (
     <>
     <section className='view-contact-intro p-3'>
+    
       <div className="container">
         <div className="row">
           <div className="col">
@@ -14,31 +46,34 @@ const Viewcontact = () => {
         </div>
       </div>
    </section>
-   <section className='view-contact mt-3'>
+   {
+    loading ? <Spinner/> : <> {
+      Object.keys(contact).length > 0 && Object.keys(group).length > 0 &&
+      <section className='view-contact mt-3'>
     <div className="container">
       <div className="row align-item-center">
         <div className="col-md-4">
-          <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" className='contact-img' />
+          <img src={contact.photo} className='contact-img' />
         </div>
         <div className="col-md-8">
         <ul className='list-group'>
                       <li className='list-group-item list-group-item-action'>
-                          Name : <span className='fw-bold'>Vidya</span>
+                          Name : <span className='fw-bold'>{contact.name}</span>
                       </li>
                       <li className='list-group-item list-group-item-action'>
-                          Mobile : <span className='fw-bold'>8088285266</span>
+                          Mobile : <span className='fw-bold'>{contact.mobile}</span>
                       </li>
                       <li className='list-group-item list-group-item-action'>
-                          Email : <span className='fw-bold'>Vidya@gmail.com</span>
+                          Email : <span className='fw-bold'>{contact.email}</span>
                       </li>
                       <li className='list-group-item list-group-item-action'>
-                          Company : <span className='fw-bold'>Youtube</span>
+                          Company : <span className='fw-bold'>{contact.company}</span>
                       </li>
                       <li className='list-group-item list-group-item-action'>
-                          Title : <span className='fw-bold'>Youtuber</span>
+                          Title : <span className='fw-bold'>{contact.title}</span>
                       </li>
                       <li className='list-group-item list-group-item-action'>
-                          Email : <span className='fw-bold'>Vidya@gmail.com</span>
+                          Group : <span className='fw-bold'>{group.name}</span>
                       </li>
                     </ul>
 
@@ -53,6 +88,10 @@ const Viewcontact = () => {
     </div>
 
    </section>
+    }
+     </>
+   }
+   
     </>
    
   )

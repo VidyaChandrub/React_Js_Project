@@ -19,7 +19,7 @@ const Contactlist = () => {
         let response = await ContactService.getAllContacts();
        /*  console.log(response.data) */
        setState({...state,
-        loading:true,
+        loading:false,
         contacts:response.data})
     }
     catch(error){
@@ -65,7 +65,7 @@ const Contactlist = () => {
         </div>
       </section>
       {
-        loading ? <><section className='contact-list'>
+        loading ? <Spinner/> :<><section className='contact-list'>
         <div className="container">
           <div className="row">
             {
@@ -92,7 +92,7 @@ const Contactlist = () => {
   
                     </div>
                     <div className="col-md-1 d-flex flex-column align-items-center">
-                      <Link to={"/viewcontact/:contactID"} className='btn btn-warning my-1'><i className='fa fa-eye'/></Link>
+                      <Link to={`/viewcontact/${contact.id}`} className='btn btn-warning my-1'><i className='fa fa-eye'/></Link>
                       <Link to={"/editcontact/:contactID"} className='btn btn-primary my-1'><i className='fa fa-pen'/></Link>
                       <Link  className='btn btn-danger my-1'><i className='fa fa-trash'/></Link>
                     </div>
@@ -106,7 +106,7 @@ const Contactlist = () => {
           </div>
         </div>
 
-      </section></> : <Spinner/> 
+      </section></>  
       }
       
     </>

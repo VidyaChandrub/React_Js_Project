@@ -1,10 +1,29 @@
 import React from 'react'
+import { useState } from 'react'
 import {Link} from "react-router-dom"
 
 const Addcontact = () => {
+
+  let [state,setState] = useState({
+    loading : false,
+    contact : {
+      name:'',
+      photo:'',
+      mobile:'',
+      email:'',
+      company:'',
+      title:'',
+      groupId:''
+    },
+    groups:[],
+    errorMessage:''
+  });
   return (
     <>
     <section className='add-contact p-3'>
+      <pre>
+      {JSON.stringify(state.contact)}
+      </pre>
       <div className="container">
         <div className="row">
           <div className="col">
