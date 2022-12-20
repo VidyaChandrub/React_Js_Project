@@ -1,11 +1,11 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
-import {Link, useParams} from "react-router-dom"
+import {Link, useParams, useNavigate} from "react-router-dom"
 import { ContactService } from '../../../services/ContactService';
 
 const Editcontact = () => {
-
+  let navigate = useNavigate();
   let {contactID}= useParams();
 
   let [state,setState]=useState({
@@ -25,18 +25,21 @@ const Editcontact = () => {
   });
 
   let {loading,contact,groups,errorMessage} = state;
-  useEffect(async () => {
-    try{
-      setState({...state,loading:true})
+  useEffect(async ()=>{
+    try {
       let response = await ContactService.getContacts(contactID);
+      let groupresponse = await ContactService.getGroups(response.data);
+      /* console.log(response.data) */
       setState({...state,
-      loading:false,
-    contact:response.data})
+        loading:false,
+        contact:response.data,
+        groups: groupresponse.data}
+    )
     }
     catch(error){
       setState({...state,
-      loading:false,
-    errorMessage:error.message})
+        loading:false,
+      errorMessage:error.message})
     }
 
   },[contactID]);
@@ -47,6 +50,20 @@ const Editcontact = () => {
       ...state.contact,
       [event.target.name]:event.target.value
     }})
+  }
+
+  let submitForm = async (event) => {
+    event.preventDefault();
+    try{
+      let response = await ContactService.updateContact(state.contact, contactID);
+      if(response){
+          navigate('/contactlist',{replace : true})
+      }
+    }
+    catch(error){
+      setState({...state,errorMessage: error.message});
+      navigate('/contactadd',{replace : false})
+    }
   }
   return (
     <>
@@ -61,7 +78,7 @@ const Editcontact = () => {
         </div>
         <div className="row align-items-center">
           <div className="col-md-4">
-            <form >
+            <form onSubmit={submitForm}>
               <div className="mb-2">
                 <input type="text" required="true" name="name" value={contact.name} onChange={updateInput} placeholder='Name' className='form-control' />
               </div>
@@ -82,7 +99,15 @@ const Editcontact = () => {
               </div>
               <div className='mb-2'>
                 <select className='form-control'  required="true" name="groupId" value={contact.groupId} onChange={updateInput}>
+                
                   <option value="">Select a Group</option>
+                  {
+                    groups.length > 0 && groups.map ( (group) => {
+                      return (
+                        <option key={group.id} value={group.id}>{group.name}</option>
+                      )
+                    })
+                  }
                 </select>
               </div>
               <div className="mb-2">
@@ -92,7 +117,7 @@ const Editcontact = () => {
             </form>
           </div>
           <div className="col-md-6">
-            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" className='contact-img' />
+            <img src={contact.photo} className='contact-img' />
           </div>
         </div>
       </div>
