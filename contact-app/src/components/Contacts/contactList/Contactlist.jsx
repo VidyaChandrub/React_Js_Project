@@ -93,7 +93,7 @@ const Contactlist = () => {
                     </div>
                     <div className="col-md-1 d-flex flex-column align-items-center">
                       <Link to={`/viewcontact/${contact.id}`} className='btn btn-warning my-1'><i className='fa fa-eye'/></Link>
-                      <Link to={"/editcontact/:contactID"} className='btn btn-primary my-1'><i className='fa fa-pen'/></Link>
+                      <Link to={`/editcontact/${contact.id}`} className='btn btn-primary my-1'><i className='fa fa-pen'/></Link>
                       <Link  className='btn btn-danger my-1'><i className='fa fa-trash'/></Link>
                     </div>
                     </div>
