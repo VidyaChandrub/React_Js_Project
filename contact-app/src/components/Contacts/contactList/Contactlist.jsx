@@ -7,6 +7,12 @@ import Spinner from '../../Spinner/Spinner';
 
 const Contactlist = () => {
 
+  let [query,setQuery] = useState(
+    {
+      text:''
+    }
+  );
+
   let [state,setState] = useState(  {
     loading:false,
     contacts:[],
@@ -29,6 +35,32 @@ const Contactlist = () => {
     }
   },[]);
 
+ let clickDelete = async (contactID) => {
+    try{
+      let response = await ContactService.deleteContact(contactID)
+      if(response){
+        setState({...state,loading:true});
+        let response = await ContactService.getAllContacts();
+       /*  console.log(response.data) */
+       setState({...state,
+        loading:false,
+        contacts:response.data})
+      }
+    }
+    catch(error){
+      setState({...state,
+        loading:false,
+      errorMessage:error.message})
+
+    }
+
+  }
+
+  let searchContacts = (event) => {
+    setQuery({...query,text:event.target.value})
+
+  }
+
   let {loading,contacts,errorMessage} = state;
 
   return (
@@ -49,7 +81,7 @@ const Contactlist = () => {
                   <form className='row'>
                     <div className="col">
                       <div className="mb-2">
-                         <input type="text" className='form-control' placeholder='Search Names' />
+                         <input name="text" value={query.text}  onChange={searchContacts} type="text" className='form-control' placeholder='Search Names' />
                       </div>
                     </div>
                     <div className="col">
@@ -94,7 +126,7 @@ const Contactlist = () => {
                     <div className="col-md-1 d-flex flex-column align-items-center">
                       <Link to={`/viewcontact/${contact.id}`} className='btn btn-warning my-1'><i className='fa fa-eye'/></Link>
                       <Link to={`/editcontact/${contact.id}`} className='btn btn-primary my-1'><i className='fa fa-pen'/></Link>
-                      <Link  className='btn btn-danger my-1'><i className='fa fa-trash'/></Link>
+                      <button  className='btn btn-danger my-1' onClick={() => clickDelete(contact.id)}><i className='fa fa-trash'/></button>
                     </div>
                     </div>
                   </div>

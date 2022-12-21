@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react'
 import {Link, useParams, useNavigate} from "react-router-dom"
 import { ContactService } from '../../../services/ContactService';
+import Spinner from '../../Spinner/Spinner';
 
 const Editcontact = () => {
   let navigate = useNavigate();
@@ -67,7 +68,9 @@ const Editcontact = () => {
   }
   return (
     <>
-    <section className='add-contact p-3'>
+    {
+      loading ? <Spinner/> : <>
+      <section className='add-contact p-3'>
       <pre>{JSON.stringify(contact)}</pre>
       <div className="container">
         <div className="row">
@@ -122,6 +125,9 @@ const Editcontact = () => {
         </div>
       </div>
     </section>
+      </>
+    }
+    
 
     </>
   )
