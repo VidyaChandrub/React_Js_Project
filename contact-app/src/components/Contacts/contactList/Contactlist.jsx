@@ -16,6 +16,7 @@ const Contactlist = () => {
   let [state,setState] = useState(  {
     loading:false,
     contacts:[],
+    filteredContact:[],
     errorMessage:''
   });
 
@@ -26,7 +27,9 @@ const Contactlist = () => {
        /*  console.log(response.data) */
        setState({...state,
         loading:false,
-        contacts:response.data})
+        contacts:response.data,
+        filteredContact:response.data
+        })
     }
     catch(error){
         setState({...state,
@@ -44,7 +47,8 @@ const Contactlist = () => {
        /*  console.log(response.data) */
        setState({...state,
         loading:false,
-        contacts:response.data})
+        contacts:response.data,
+        filteredContact:response.data})
       }
     }
     catch(error){
@@ -57,11 +61,12 @@ const Contactlist = () => {
   }
 
   let searchContacts = (event) => {
-    setQuery({...query,text:event.target.value})
+    setQuery({...query,
+      text:event.target.value})
 
   }
 
-  let {loading,contacts,errorMessage} = state;
+  let {loading,contacts,filteredContact,errorMessage} = state;
 
   return (
     <>
@@ -101,7 +106,7 @@ const Contactlist = () => {
         <div className="container">
           <div className="row">
             {
-              contacts.length > 0 && contacts.map((contact) => {
+              filteredContact.length > 0 && filteredContact.map((contact) => {
                 return (<div className="col-md-6" key={contact.id}>
                 <div className="card my-2">
                   <div className="card-body">
