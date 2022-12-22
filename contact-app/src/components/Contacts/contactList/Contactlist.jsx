@@ -63,7 +63,11 @@ const Contactlist = () => {
   let searchContacts = (event) => {
     setQuery({...query,
       text:event.target.value})
-
+      let theContacts = state.contacts.filteredContact(contact => {
+        return contact.name.tolowerCase().includes(event.target.value.tolowerCase())
+      })
+        setState({...state,
+        filteredContact:theContacts})
   }
 
   let {loading,contacts,filteredContact,errorMessage} = state;
