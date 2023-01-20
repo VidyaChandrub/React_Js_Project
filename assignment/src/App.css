@@ -1,20 +1,21 @@
 .App {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content:space-evenly;
   flex-direction: column;
   width: 100vw;
+  
 }
 
 .user {
-  border: 2px solid black;
+  border: 2px solid whitesmoke;
   border-radius: 10px;
-  background-color: #b3e3ff;
+  background-color: white;
   display: flex;
-  justify-content: center;
+  justify-content:space-evenly;
   align-items: center;
   flex-direction: column;
-  width: 500px;
+  width: 1000px;
   height: 300px;
   margin: 20px;
 }

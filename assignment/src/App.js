@@ -19,6 +19,7 @@ function App() {
           <h3>{user.firstName}</h3>
           <h3>{user.lastName}</h3>
           <h3>{user.email}</h3>
+           <button ><a className={"paginationBttns paginationActive"}>Viewdetails</a></button>
         </div>
       );
     });
@@ -33,8 +34,8 @@ function App() {
     <div className="App">
       {displayUsers}
       <ReactPaginate
-        previousLabel={"Previous"}
-        nextLabel={"Next"}
+        previousLabel= {<img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Less_than_symbol.jpg" height="10px" width="10px"/>}
+        nextLabel={<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz7iRlbHfDpBKdThku5oPbyKbvMpFUaX4FdkuWTWnZjtjlWuUGSbXuMgMSpQfsVKQnrEY&usqp=CAU" height="15px" width="10px"/>}
         pageCount={pageCount}
         onPageChange={changePage}
         containerClassName={"paginationBttns"}
