@@ -19,7 +19,7 @@ function App() {
           <h3>{user.firstName}</h3>
           <h3>{user.lastName}</h3>
           <h3>{user.email}</h3>
-           <button ><a className={"paginationBttns paginationActive"}>Viewdetails</a></button>
+           <button className={"paginationActive"} onClick={"/viewdetails"}><a>Viewdetails</a></button>
         </div>
       );
     });
