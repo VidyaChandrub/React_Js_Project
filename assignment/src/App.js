@@ -3,6 +3,8 @@ import "./App.css";
 import React, { useState } from "react";
 import JsonData from "./MOCK_DATA.json";
 import ReactPaginate from "react-paginate";
+import Viewdata from "./Viewdata";
+
 
 function App() {
   const [users, setUsers] = useState(JsonData.slice(0, 50)); //JsonData.slice(0, 50)
@@ -19,7 +21,7 @@ function App() {
           <h3>{user.firstName}</h3>
           <h3>{user.lastName}</h3>
           <h3>{user.email}</h3>
-           <button className={"paginationActive"} onClick={"/viewdetails"}><a>Viewdetails</a></button>
+           <a href="/viewdata" ><button  className={"paginationActive"}><Viewdata/></button></a>
         </div>
       );
     });
@@ -33,6 +35,7 @@ function App() {
   return (
     <div className="App">
       {displayUsers}
+      
       <ReactPaginate
         previousLabel= {<img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Less_than_symbol.jpg" height="10px" width="10px"/>}
         nextLabel={<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz7iRlbHfDpBKdThku5oPbyKbvMpFUaX4FdkuWTWnZjtjlWuUGSbXuMgMSpQfsVKQnrEY&usqp=CAU" height="15px" width="10px"/>}
