@@ -7,7 +7,7 @@ import Viewdata from "./Viewdata";
 
 
 function App() {
-  const [users, setUsers] = useState(JsonData); //JsonData.slice(0, 50)
+  const [users, setUsers] = useState(JsonData.slice(0, 50)); //JsonData.slice(0, 50)
   const [pageNumber, setPageNumber] = useState(0);
 
   const usersPerPage = 10;
@@ -18,9 +18,9 @@ function App() {
     .map((user) => {
       return (
         <div className="user">
-          <h3>{user.name}</h3>
-           <h3>{user.email}</h3>
-          <h3>{user.company.name}</h3> 
+          <h3>{user.firstName}</h3>
+          <h3>{user.lastName}</h3>
+          <h3>{user.email}</h3>
            <a href="/viewdata" ><button  className={"paginationActive"}><Viewdata/></button></a>
         </div>
       );
