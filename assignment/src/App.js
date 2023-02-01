@@ -5,69 +5,7 @@ import axios from "axios";
 let App = () => {
 
 return <>
-<div>
-const availableTimeslots = ()=>{
-   [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14
-  ].map((id) => {
-    return {
-      id,
-      start: new Date(
-        new Date(new Date().setDate(new Date().getDate() + id)).setHours(
-          9,
-          0,
-          0,
-          0
-        )
-      ),
-      end: new Date(
-        new Date(new Date().setDate(new Date().getDate() + id)).setHours(
-          17,
-          0,
-          0,
-          0
-        )
-      )
-    };
-  })};
-  
-     const submit_data = async (start) => {
-     const res = await axios.get("http://json-parser.com/75d01446/1");
-  
-    
-    res.data.start = start.toString();
-    console.log(res.data.start);
-  
-    
-    
-  
-  
-    
-    const [start, set_start_date] = useState(new Date());
-    
-  
-    useEffect(() => {
-      submit_data(first_name, last_name, start_date);
-      set_info_selected_active(false);
-    }, []);
-}
-
-</div>
-
+ 
 <div className="rectangle">
 <p className="para">Find a Free Time</p>
   <br/><br/>
@@ -93,7 +31,7 @@ const availableTimeslots = ()=>{
   <br/><br/><br/><br/>
   <div className='row'>
   <br/><br/>
-  <input type="submit" value="Add" className='addbtn' />
+  <input type="submit" value="Add" className='addbtn'  />
   </div>
 
   
@@ -118,7 +56,7 @@ const availableTimeslots = ()=>{
       
     </div>
 </div>
-<div>
+{/* <div>
 <ScheduleMeeting
         borderRadius={10}
         primaryColor="#3f5b85"
@@ -129,7 +67,7 @@ const availableTimeslots = ()=>{
           set_info_selected_active(true);
         }}
       />
-</div>
+</div> */}
 </>
 }
 
