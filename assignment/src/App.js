@@ -1,74 +1,25 @@
-import "./App.css";
-import { ScheduleMeeting } from "react-schedule-meeting";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Users from "./components/Users";
+import AddUser from "./components/AddUser";
+import DeleteUser from "./components/DeleteUser";
+import UpdateUser from "./components/UpdateUser";
+
+
 let App = () => {
-
-return <>
- 
-<div className="rectangle">
-<p className="para">Find a Free Time</p>
-  <br/><br/>
-  <div className='col-lg-4'>
-  <label className='tm'>Date*</label>
-  <br/><br/>
-  <input type="date" className='rdate' required/>
-  </div>
   
-
-  <div className='col-lg-4'>
-  <label className='start'>Start time*</label>
-  <br/><br/>
-  <input type="time" className='rdate' required/>
-
-  </div>
-  
-  <div className='col-lg-4'>
-    <label className='duration'>Duration*</label>
-  <br/><br/>
-  <input type="text" className='rdate' required/>
-  </div>
-  <br/><br/><br/><br/>
-  <div className='row'>
-  <br/><br/>
-  <input type="submit" value="Add" className='addbtn'  />
-  </div>
-
-  
-  <br/>
-  <br/>
-  <div className='row'>
-  <input type="text" className='appointment'/>
-  </div>
-  <br/><br/>
-    <div className="row">
-      <div className='col-sm-1'>
-       <button className='busy'></button>
-       <br/>
-       <label>Busy</label>
-      
-      </div>
-      <div className='col-sm-1'>
-      <button className='free'></button>
-      <br/>
-      <label>Free</label>
-      </div>
-      
-    </div>
-</div>
-{/* <div>
-<ScheduleMeeting
-        borderRadius={10}
-        primaryColor="#3f5b85"
-        eventDurationInMinutes={30}
-        availableTimeslots={availableTimeslots}
-        onStartTimeSelect={(e) => {
-          set_start_date(e.startTime);
-          set_info_selected_active(true);
-        }}
-      />
-</div> */}
-</>
+  return <>
+              <Router>
+                <Navbar/>
+                <Routes>
+                <Route path={"/users"} element={<Users/>} />
+                <Route path={"/user/create"} element={<AddUser/>} />
+                <Route path={" /user/:id"} element={<UpdateUser/>} />
+                <Route path={"/user/:id"} element={<DeleteUser/>} />
+                </Routes>
+              </Router>
+        </>
 }
 
 export default App;
