@@ -1,0 +1,27 @@
+
+
+{
+    
+    "data": [
+        {
+            "_id": "63de1c9370f84b951d890ba6",
+            "firstName": "rishwa",
+            "lastName": "Rafa",
+            "phoneNumber": "8983938993",
+            "age": 23,
+            "createdAt": "2023-02-04T08:51:31.460Z",
+            "updatedAt": "2023-02-04T11:17:16.011Z",
+            "__v": 0
+        },
+        {
+            "_id": "63de213f70f84b951d890c10",
+            "firstName": "Kiea",
+            "lastName": "Pollard",
+            "phoneNumber": "34349898",
+            "age": 24,
+            "createdAt": "2023-02-04T09:11:27.596Z",
+            "updatedAt": "2023-02-04T09:21:51.055Z",
+            "__v": 0
+        }
+    ]
+}
