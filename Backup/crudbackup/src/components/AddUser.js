@@ -8,16 +8,16 @@ const AddUser = () => {
     let [lastname, lnameChange] =useState("");
     let [age , ageChange] =useState("");
     let [phone , phoneChange] =useState("");
-    let [active , activeChange] =useState(true);
+    let [action , actionChange] =useState(true);
     const navigate = useNavigate();
+//    let[userdata,setUserdata] = useState("");
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-       const userdata = {firstname,lastname,age,phone,active};
+       const userdata = {firstname,lastname,age,phone,action};
         
-
-
-       fetch("http://localhost:8000/data",{
+    
+        fetch("http://localhost:8000/data",{
         mode: 'no-cors',
         method:"POST",
         headers:{"content-type":"application/json"},
@@ -25,6 +25,7 @@ const AddUser = () => {
        }).then(
         (res)=>{
             alert("Saved Successfully");
+           // return res;
             navigate("/");
         }).catch((err)=>{
             console.log(err.message);
@@ -77,7 +78,7 @@ const AddUser = () => {
                         </div>
                         <div className='col-log-12'>
                             <div className='form-check'>
-                                <input checked={active} onChange={e=>activeChange(e.target.checked)}type="checkbox" className='form-check-input'></input>
+                                <input checked={action} onChange={e=>actionChange(e.target.checked)} type="checkbox" className='form-check-input'></input>
                                 <label  className="form-check-label">Is Active</label>
                             </div>
                         </div>
