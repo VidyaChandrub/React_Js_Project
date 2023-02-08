@@ -22,8 +22,8 @@ const App = () => {
   return (
     <div>
      
-      <form className='form-control'>
-      <input type="text" value={query} placeholder='serach states..' className='form-group' onChange={(e)=>setQuery(e.target.value)}/>
+      <form className='form-control'  method="get">
+      <input type="search" value={query} placeholder='serach states..' className='form-group' onChange={(e)=>setQuery(e.target.value)}/>
       { Array.isArray(apidata) &&
         apidata.filter(item=>{
           if(query ===""){
