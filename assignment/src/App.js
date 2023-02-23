@@ -6,11 +6,13 @@ const App = () => {
   const [apidata,setApidata] = useState("");
 
   useEffect(()=>{
-    axios.get("https://maps.googleapis.com/maps/api/geocode/json?address=bhopal&key=AIzaSyCLzjF1kXpMyN-4oG8jsjAQ2SnXFzVVN2Q")
+    axios.get("")
     .then((response)=>{
       console.log(response.data.results);
     })
   },[]);
+
+  
 
 
 
